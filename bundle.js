@@ -20467,28 +20467,21 @@
 
 	var stores = _interopRequireWildcard(_stores);
 
-	var redux = (0, _redux.createRedux)(stores);
-
-	//@provide(redux)
-
 	var App = (function () {
 	  function App() {
-	    _classCallCheck(this, App);
+	    _classCallCheck(this, _App);
 	  }
 
-	  _createClass(App, [{
+	  var _App = App;
+
+	  _createClass(_App, [{
 	    key: 'render',
 	    value: function render() {
-	      return _react2['default'].createElement(
-	        _reduxReact.Provider,
-	        { redux: redux },
-	        function () {
-	          return _react2['default'].createElement(_containersCounterApp2['default'], null);
-	        }
-	      );
+	      return _react2['default'].createElement(_containersCounterApp2['default'], null);
 	    }
 	  }]);
 
+	  App = (0, _reduxReact.provide)((0, _redux.createRedux)(stores))(App) || App;
 	  return App;
 	})();
 
@@ -24397,38 +24390,28 @@
 
 	var CounterActions = _interopRequireWildcard(_actionsCounterActions);
 
-	// @connect(state => ({
-	//   counter: state.counter
-	// }))
-
 	var CounterApp = (function () {
 	  function CounterApp() {
-	    _classCallCheck(this, CounterApp);
+	    _classCallCheck(this, _CounterApp);
 	  }
 
-	  _createClass(CounterApp, [{
+	  var _CounterApp = CounterApp;
+
+	  _createClass(_CounterApp, [{
 	    key: 'render',
 	    value: function render() {
+	      var _props = this.props;
+	      var counter = _props.counter;
+	      var dispatch = _props.dispatch;
 
-	      //console.log(this.props);
-
-	      //const { counter, dispatch } = this.props;
-
-	      console.log(this.context);
-
-	      return _react2['default'].createElement(
-	        _reduxReact.Connector,
-	        null,
-	        function (_ref) {
-	          var counter = _ref.counter;
-	          var dispatch = _ref.dispatch;
-	          return _react2['default'].createElement(_componentsCounter2['default'], _extends({ counter: counter
-	          }, (0, _redux.bindActionCreators)(CounterActions, dispatch)));
-	        }
-	      );
+	      return _react2['default'].createElement(_componentsCounter2['default'], _extends({ counter: counter
+	      }, (0, _redux.bindActionCreators)(CounterActions, dispatch)));
 	    }
 	  }]);
 
+	  CounterApp = (0, _reduxReact.connect)(function (state) {
+	    return state;
+	  })(CounterApp) || CounterApp;
 	  return CounterApp;
 	})();
 
