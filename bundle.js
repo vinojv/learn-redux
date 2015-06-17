@@ -24448,6 +24448,7 @@
 	    value: function render() {
 	      var _props = this.props;
 	      var increment = _props.increment;
+	      var decrement = _props.decrement;
 	      var counter = _props.counter;
 
 	      return _react2['default'].createElement(
@@ -24461,6 +24462,11 @@
 	          'button',
 	          { onClick: increment },
 	          '+'
+	        ),
+	        _react2['default'].createElement(
+	          'button',
+	          { onClick: decrement },
+	          '-'
 	        )
 	      );
 	    }
@@ -24468,6 +24474,7 @@
 	    key: 'propTypes',
 	    value: {
 	      increment: _react.PropTypes.func.isRequired,
+	      decrement: _react.PropTypes.func.isRequired,
 	      counter: _react.PropTypes.number.isRequired
 	    },
 	    enumerable: true
@@ -24489,12 +24496,19 @@
 	  value: true
 	});
 	exports.increment = increment;
+	exports.decrement = decrement;
 
 	var _constantsActionTypes = __webpack_require__(274);
 
 	function increment() {
 	  return {
 	    type: _constantsActionTypes.INCREMENT
+	  };
+	}
+
+	function decrement() {
+	  return {
+	    type: _constantsActionTypes.DECREMENT
 	  };
 	}
 
@@ -24509,6 +24523,8 @@
 	});
 	var INCREMENT = 'INCREMENT';
 	exports.INCREMENT = INCREMENT;
+	var DECREMENT = 'DECREMENT';
+	exports.DECREMENT = DECREMENT;
 
 /***/ },
 /* 275 */
@@ -24547,6 +24563,8 @@
 	  switch (action.type) {
 	    case _constantsActionTypes.INCREMENT:
 	      return state + 1;
+	    case _constantsActionTypes.DECREMENT:
+	      return state - 1;
 	    default:
 	      return state;
 	  }
